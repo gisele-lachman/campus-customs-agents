@@ -1,0 +1,34 @@
+# Secrets: never commit a real .env
+.env
+.env.local
+frontend/.env.local
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Front end
+node_modules/
+dist/
+
+# Scratch and test output (the two real databases in data/ ARE committed)
+data/scratch/
+*.lock
+.*.tmp
+*.unreadable-*
+test_report_*.json
+audit_test_*.json
+audit_concurrency_*.json
+audit_debug*.json
+
+# Logs, pid files, SQLite side files
+*.log
+*.pid
+*.db-journal
+*.db-wal
+*.db-shm
+
+# OS
+.DS_Store

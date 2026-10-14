@@ -1,0 +1,114 @@
+{
+  "generated_from": "real run on 2026-10-14 (shop date 2026-08-31); data/campus_customs_new.db + output/audit_trail.json",
+  "starting_balance": 3400.0,
+  "ending_balance": 160.0,
+  "approver_note": "Approvals were made by Ms. Lachman in the dashboard; the backend recorded the name in the 'Manager on duty' field at the time, which still held its default 'Store manager'.",
+  "tickets": [
+    {
+      "id": 101,
+      "final_status": "resolved",
+      "run_id": 1,
+      "attempts": 1,
+      "boss_decision": "proceed_pending_approval",
+      "outcome": "Size S tee was out of stock and the only apparel vendor was blocked by overdue invoice 501. The manager paid the $840 invoice and approved a 1-tee purchase order ($8); restock expected about 2026-09-05.",
+      "agents": {
+        "boss": "Read the ticket, sent slips to Inventory, Accounting and Customer Service, checked the pending items twice, and called proceed_pending_approval (pay 501 before the PO).",
+        "inventory": "Found 0 on hand (short 1), Bulldog Print Co blocked by invoice 501 ($840, 3 days overdue) with a 5-day lead; re-confirmed the PO quantity (1) when Accounting asked.",
+        "accounting": "Checked cash ($3,400) and invoice 501, asked Inventory to confirm the PO details, then prepared payment #1 (invoice 501, $840) and purchase order #2 (1 \u00d7 CC-TEE-WHITE S, $8).",
+        "customer_service": "Drafted message #3 to Tauhid Zaman (out of stock, restock depends on approvals); nothing was sent.",
+        "facilities": "Not involved."
+      },
+      "delegations": [
+        "boss -> inventory",
+        "boss -> accounting",
+        "accounting -> inventory",
+        "boss -> customer_service"
+      ],
+      "human_approvals": [
+        {
+          "item": 1,
+          "type": "payment",
+          "what": "invoice 501 to Bulldog Print Co",
+          "amount": 840.0,
+          "decision": "approved and paid",
+          "cash_after": 2560.0
+        },
+        {
+          "item": 2,
+          "type": "purchase_order",
+          "what": "1 \u00d7 CC-TEE-WHITE size S from vendor 1",
+          "amount": 8.0,
+          "decision": "approved (no cash moves on a PO)",
+          "cash_after": 2560.0
+        },
+        {
+          "item": 3,
+          "type": "customer_message",
+          "what": "draft to Tauhid Zaman",
+          "amount": null,
+          "decision": "rejected (VOID)"
+        }
+      ]
+    },
+    {
+      "id": 102,
+      "final_status": "resolved",
+      "run_id": 2,
+      "attempts": 1,
+      "boss_decision": "proceed_pending_approval",
+      "outcome": "The rent notice matched lease 1 ($2,400 due 2026-09-02). The manager paid the rent; lease 1's next due date moved to 2026-10-02 and cash dropped to $160.",
+      "agents": {
+        "boss": "Read the ticket and sent Facilities and Accounting their slips in the same step, then called proceed_pending_approval.",
+        "facilities": "Checked lease 1 against the notice: $2,400 due 2026-09-02, 2 days away, matching the notice; noted that cash covered it.",
+        "accounting": "Checked the lease and cash ($2,560 after ticket 101), confirmed nothing was pending, and prepared payment #4 (rent, lease 1, $2,400).",
+        "inventory": "Not involved.",
+        "customer_service": "Not involved."
+      },
+      "delegations": [
+        "boss -> facilities",
+        "boss -> accounting"
+      ],
+      "human_approvals": [
+        {
+          "item": 4,
+          "type": "payment",
+          "what": "rent for lease 1 to Elm City Properties",
+          "amount": 2400.0,
+          "decision": "approved and paid",
+          "cash_after": 160.0
+        }
+      ],
+      "notes": "Run started from the manager's browser; the payment was stamped while the Boss was still writing its summary."
+    },
+    {
+      "id": 103,
+      "final_status": "resolved",
+      "run_id": 3,
+      "attempts": 1,
+      "boss_decision": "needs_more_info",
+      "outcome": "No discount or purchase order was prepared: the club named no target price and the Boss wanted the shortfall confirmed first. Only a draft asking the club for its price (#5) was left for the manager. With no payment or purchase waiting, the ticket resolved when the run finished; cash stayed at $160.",
+      "agents": {
+        "boss": "Read the ticket, sent slips to Inventory, Accounting and Customer Service, and called needs_more_info.",
+        "inventory": "Found 8 on hand (short 12); Bulldog Print Co no longer blocked (501 paid), 5-day lead, cost $22 / list $58. On Accounting's re-check it ran check_stock for 12 (\"short 4\") but still answered shortfall 12.",
+        "accounting": "Checked cash ($160) and the margin at list and at the $22 cost floor; proposed no price and prepared no override or purchase order.",
+        "customer_service": "Drafted message #5 to Yale AI Club (8 of 20 in stock, restock about 5 days, asking for their target price); nothing was sent.",
+        "facilities": "Not involved."
+      },
+      "delegations": [
+        "boss -> inventory",
+        "boss -> accounting",
+        "accounting -> inventory",
+        "boss -> customer_service"
+      ],
+      "human_approvals": [],
+      "pending_drafts": [
+        {
+          "item": 5,
+          "type": "customer_message",
+          "what": "draft to Yale AI Club",
+          "status": "pending (doesn't block resolution)"
+        }
+      ]
+    }
+  ]
+}
