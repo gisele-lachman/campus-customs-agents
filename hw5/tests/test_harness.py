@@ -49,8 +49,10 @@ def sha(path: Path) -> str | None:
 
 
 def make_scratch_db() -> None:
+    """Fresh scratch copy of the ORIGINAL data (opened read-only), so the tests don't depend on the
+    working copy's state (in the repo it's the finished, resolved state, where invoice 501 is paid)."""
     SCRATCH.mkdir(parents=True, exist_ok=True)
-    src = sqlite3.connect(f"file:{WORKING_DB}?mode=ro", uri=True)
+    src = sqlite3.connect(f"file:{ORIGINAL}?mode=ro", uri=True)
     dst = sqlite3.connect(SCRATCH_DB)
     src.backup(dst)
     src.close(), dst.close()
